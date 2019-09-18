@@ -1,17 +1,18 @@
-const pokemonName = document.getElementById("pokemon-name");
-const pokemonHeight = document.getElementById("pokemon-height");
-pokemonName.innerText = "El nombre de mi pokemon es: ";
+const pokemonName = document.getElementById('pokemon-name');
+const pokemonHeight = document.getElementById('pokemon-height');
+const pokemonFrontImg = document.getElementById('pokemon-img-front');
 
-const pokemonApiUrl1 = "https://pokeapi.co/api/v2/";
+const pokemonApiUrl = 'https://pokeapi.co/api/v2/';
 
-let getPokemonData = async () => {
-    const response = await fetch(`${pokemonApiUrl1}pokemon/1/`);
-    const pokemon = await response.json();
+let getPokemonData = async ()=> {
+    const respose = await fetch(`${pokemonApiUrl}pokemon/1`);
+    const pokemon = await respose.json();
     console.log(pokemon);
-    pokemonName.innerText=pokemon.name;
-    const {name, height} = pokemon;
+    const {name , height} = pokemon;
+    const frontImg = pokemon.sprites.front_default;
     pokemonName.innerText = name;
     pokemonHeight.innerText = `La altura es: ${height}`;
-}
+    pokemonFrontImg.src = frontImg;
+};
 
 getPokemonData();
